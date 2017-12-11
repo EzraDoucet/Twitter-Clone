@@ -16,7 +16,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    # @tweet = Tweet.new(tweet_params)
+    @tweet = Tweet.new(tweet_params)
 
     if @tweet.save
       redirect_to @tweet, notice: "That Tweet was Saved!"
@@ -39,6 +39,17 @@ class TweetsController < ApplicationController
     else
       flash.now[:alert] = "Oops, Twuble!"
       render :edit
+    end
+  end
+
+  def destroy
+    # @tweet = Tweet.new(tweet_params)
+    @tweet.destroy
+
+    if @tweet.destroy
+      redirect_to tweets_path, notice: 'Tweet Tweleted!'
+    else
+      flash.now[:alert] = "Oops, Twuble!"
     end
   end
 
