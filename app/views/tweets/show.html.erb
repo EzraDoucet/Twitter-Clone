@@ -1,12 +1,14 @@
 <div class="container text-center">
   <h1>Your Tweet:</h1>
 
+  <h1><%= @tweet.user.inspect %></h1>
+
   <p>
     <strong>Message: </strong> <%= sanitize(@tweet.message) %>
   </p>
 
   <p>
-    <strong>User: </strong> <%= @tweet.user.username %>
+    <strong>User: </strong> <%= @tweet.user.try(:username) if @tweet.user %>
   </p>
 
   <%= link_to 'Edit', edit_tweet_path(@tweet), class: 'btn btn-warning' %>
