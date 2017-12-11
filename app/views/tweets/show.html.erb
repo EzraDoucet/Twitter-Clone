@@ -1,2 +1,14 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<div class="container text-center">
+  <h1>Your Tweet:</h1>
+
+  <p>
+    <strong>Message: </strong> <%= sanitize(@tweet.message) %>
+  </p>
+
+  <p>
+    <strong>User: </strong> <%= @tweet.user.username %>
+  </p>
+
+  <%= link_to 'Edit', edit_tweet_path(@tweet), class: 'btn btn-warning' %>
+  <%= link_to 'Show All', tweets_path, class: 'btn btn-info' %>
+</div>
