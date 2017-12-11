@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
  before_action :authenticate_user!
+ before_action :set_tweet, only: [:edit, :update, :show, :destroy]
 
 
   def index
@@ -7,7 +8,7 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(params[:id])
+    # @tweet = Tweet.find(params[:id])
   end
 
   def new
@@ -15,20 +16,42 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    # @tweet = Tweet.new(tweet_params)
 
     if @tweet.save
       redirect_to @tweet, notice: "That Tweet was Saved!"
     else
-      render :new, notice: 'Sorry, couldn\'t keep that guy around'
+      flash.now[:alert] = 'Sorry, couldn\'t keep that guy around'
+      render :new
     end
 
   end
 
   def edit
+    @tweet = Tweet.find(params[:id])
   end
+
+  def update
+    # @tweet = Tweet.find(params[:id])
+
+    if @tweet.update(tweet_params)
+      redirect_to @tweet, notice: 'Tweet Twupdated!'
+    else
+      flash.now[:alert] = "Oops, Twuble!"
+      render :edit
+    end
+  end
+
+
+
+
+  private
 
   def tweet_params
     params.require(:tweet).permit(:message, :user_id)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
