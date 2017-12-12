@@ -34,7 +34,7 @@
       <div class="card">
         <% @user.tweets.each do |tweet| %>
           <div class="card-body">
-            <strong><%= tweet.user.username %></strong><small> tweeted <%= time_ago_in_words(tweet.created_at) %></small>
+            <strong><%= tweet.user.username %></strong><small> tweeted <%= time_ago_in_words(tweet.created_at) %> ago</small>
             <br><br>
             <%= sanitize(tweet.message) %>
           </div>
