@@ -18,13 +18,15 @@
 
           <tbody>
             <% @tweets.each do |tweet| %>
-              <tr>
-                <td><%= sanitize(tweet.message) %></td>
-                <td><%= link_to tweet.user.try(:username) %></td>
-                <!-- ^ would like to have a link to users here ^ -->
-                <td><%= link_to fa_icon('eye'), tweet %></td>
-                <td><%= link_to fa_icon('pencil'), edit_tweet_path(tweet) %></td>
-                <td><%= link_to fa_icon('trash-o'), tweet, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <tr class="card in-line">
+                <div  style="width: 20rem;">
+                  <td><%= sanitize(tweet.message) %></td>
+                  <td><%= link_to tweet.user.try(:username) %></td>
+                  <!-- ^ would like to have a link to users here ^ -->
+                  <td><%= link_to fa_icon('eye'), tweet %></td>
+                  <td><%= link_to fa_icon('pencil'), edit_tweet_path(tweet) %></td>
+                  <td><%= link_to fa_icon('trash-o'), tweet, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                </div>
               </tr>
             <% end %>
 
