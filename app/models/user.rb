@@ -18,6 +18,10 @@ class User < ApplicationRecord
     tweet.likes.where(user_id: id).any?
 
   end
+
+  def self.search_by_name_or_username(search_string)
+    where("name ILIKE ? OR username ILIKE ?", "%#{search_string}%", "%#{search_string}%")
+  end
 end
 
 # == Schema Information

@@ -4,7 +4,20 @@ class TweetsController < ApplicationController
 
 
   def index
-    @tweets = Tweet.all
+    # @tweets = Tweet.all
+    if params[:search]
+      # @names = User.search_by_name_or_username(params[:search])
+      @tweets = Tweet.search_by_message(params[:search])
+      if @tweets.empty? #&& @names.empty?
+        flash.now[:notice] = "No results found for '#{params[:search]}', showing all tweets instead."
+        @tweets = Tweet.all
+      end
+    # elsif @tweets.empty?
+      # redirect_to @user.find(params[:username])
+
+    else
+      @tweets = Tweet.all
+    end
   end
 
   def show

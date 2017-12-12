@@ -3,6 +3,11 @@ class Tweet < ApplicationRecord
   has_many :likes
 
   validates :message, presence: true, length: {maximum: 140, too_long: 'Bruh you only got 140 characters max.  Stop dat.'}
+
+
+  def self.search_by_message(search_string)
+    where("message ILIKE ?", "%#{search_string}%")
+  end
 end
 
 # == Schema Information
