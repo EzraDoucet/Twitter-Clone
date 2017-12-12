@@ -1,11 +1,11 @@
 <div class="container">
   <div class="form-row">
-    <div class="col-sm-6 text-center">
+    <div class="col text-center">
       <h2>Sign up</h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= devise_error_messages! %>
-
+      <form class="form-inline">
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true %>
@@ -39,14 +39,15 @@
           <%= f.label :location %><br/>
           <%= f.text_field :location, placeholder: "New Orleans, Louisiana" %>
         </div>
+      </form>
     </div>
-    <div class="col-lg-6" style="margin-top: 15%">
+    <div class="col" style="margin-top: 15%">
         <div class="field">
           <%= f.label :bio %><br />
           <%= f.trix_editor :bio, placeholder: "Your Bio here." %>
         </div>
     </div>
-    <div class="col-sm-6 text-center" style="margin-top: 20px;">
+    <div class="col text-center" style="margin-top: 20px;">
         <div class="actions">
           <%= f.submit "Sign up" %>
         </div>
