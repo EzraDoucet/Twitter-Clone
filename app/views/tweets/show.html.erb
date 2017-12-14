@@ -12,6 +12,8 @@
   <%= render 'shared/likes' %>
   <br><br>
 
+  <% if current_user.id == @tweet.user_id %> %>
   <%= link_to 'Edit', edit_tweet_path(@tweet), class: 'btn btn-warning' %>
+  <% end %>
   <%= link_to 'Show All', tweets_path, class: 'btn btn-info' %>
 </div>
